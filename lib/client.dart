@@ -28,14 +28,17 @@ class Game extends GameBase {
   }
 
   void createEntities() {
-    addEntity([new Transform(0, 0), new Renderable('player')]);
+    addEntity([new Transform(0, 0), new Renderable('player'), new Controller()]);
   }
 
   List<EntitySystem> getSystems() {
     return [
             new TweeningSystem(),
 
-            new CanvasCleaningSystem(screen),
+            new InputHandlingSystem(),
+            new ControllerMovementSystem(),
+
+            new CanvasCleaningSystem(canvas),
             new ScreenBorderRenderingSystem(screenCtx, spriteSheet),
             new SwitchedOffScreenRenderingSystem(screenCtx, spriteSheet),
             new RenderingSystem(screenCtx, spriteSheet),

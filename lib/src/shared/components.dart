@@ -10,3 +10,7 @@ class Renderable extends Component {
   String name;
   Renderable(this.name);
 }
+
+class Controller extends Component {
+  num distanceX = 0, distanceY = 0;
+}

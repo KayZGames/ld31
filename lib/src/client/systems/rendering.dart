@@ -17,19 +17,24 @@ class RenderingSystem extends EntityProcessingSystem {
 
     var src = sheet.sprites[r.name].src;
     var dst = sheet.sprites[r.name].dst;
-    ctx.drawImageToRect(sheet.image, dst, sourceRect: src);
+
+    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, t.x + (tileSize/2 + dst.left), t.y + (tileSize/2 + dst.top), dst.width, dst.height);
   }
 }
 
-class ScreenToCanvasRenderingSystem extends VoidEntitySystem {
+class ScreenToCanvasRenderingSystem extends EntityProcessingSystem {
+  Mapper<Transform> tm;
+
   CanvasElement screen;
   CanvasRenderingContext2D ctx;
 
-  ScreenToCanvasRenderingSystem(this.screen, this.ctx);
+  ScreenToCanvasRenderingSystem(this.screen, this.ctx) : super(Aspect.getAspectForAllOf([Transform, Controller]));
 
   @override
-  void processSystem() {
-    ctx.drawImageScaledFromSource(screen, 0, 0, 800, 600, 0, 0, 800, 600);
+  void processEntity(Entity entity) {
+    var t = tm[entity];
+
+    ctx.drawImageScaledFromSource(screen, -400 + t.x, -300 + t.y, 800, 600, -1.5 * tileSize, -1.5 * tileSize, 800, 600);
   }
 }
 
@@ -61,7 +66,7 @@ class ScreenBorderRenderingSystem extends VoidEntitySystem {
 
   @override
   void processSystem() {
-    ctx.drawImageScaledFromSource(buffer, 0, 0, 800, 600, -tileSize, -tileSize, 800, 600);
+    ctx.drawImage(buffer, -tileSize, -tileSize);
   }
 }
 
@@ -86,6 +91,6 @@ class SwitchedOffScreenRenderingSystem extends VoidEntitySystem {
 
   @override
   void processSystem() {
-    ctx.drawImageScaledFromSource(buffer, 0, 0, 800, 600, 0, 0, 800, 600);
+    ctx.drawImage(buffer, 0, 0);
   }
 }
