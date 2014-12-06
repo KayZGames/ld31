@@ -1,0 +1,17 @@
+name: ld31
+description: A sample dartemis application
+dependencies:
+  browser: any
+  canvas_query: any
+  gamedev_helpers:
+#    git: https://github.com/denniskaselow/gamedev_helpers
+    path: ../gamedev_helpers
+  hop: any
+  dart_to_js_script_rewriter: any
+  dartemis:
+    path: ../dartemis
+transformers:
+- dart_to_js_script_rewriter
+- dartemis:
+    additionalLibraries:
+    - gamedev_helpers/gamedev_helpers.dart
