@@ -18,16 +18,29 @@ part 'src/client/systems/rendering.dart';
 
 class Game extends GameBase {
 
-  Game() : super.noAssets('ld31', 'canvas', 800, 600);
+  CanvasElement screen;
+  CanvasRenderingContext2D screenCtx;
+
+  Game() : super('ld31', 'canvas', 800, 600, bodyDefsName: null) {
+    screen = new CanvasElement(width: 1920 + tileSize * 2, height: 1080 + tileSize * 2);
+    screenCtx = screen.context2D;
+    screenCtx.translate(tileSize, tileSize);
+  }
 
   void createEntities() {
-    // addEntity([Component1, Component2]);
+    addEntity([new Transform(0, 0), new Renderable('player')]);
   }
 
   List<EntitySystem> getSystems() {
     return [
             new TweeningSystem(),
-            new CanvasCleaningSystem(canvas),
+
+            new CanvasCleaningSystem(screen),
+            new ScreenBorderRenderingSystem(screenCtx, spriteSheet),
+            new SwitchedOffScreenRenderingSystem(screenCtx, spriteSheet),
+            new RenderingSystem(screenCtx, spriteSheet),
+            new ScreenToCanvasRenderingSystem(screen, ctx),
+
             new FpsRenderingSystem(ctx),
             new AnalyticsSystem(AnalyticsSystem.GITHUB, 'ld31')
     ];
