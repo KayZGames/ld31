@@ -2,7 +2,7 @@
 
 "bg_black":
 {
-	"frame": {"x":2,"y":34,"w":30,"h":30},
+	"frame": {"x":98,"y":96,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
@@ -10,18 +10,90 @@
 },
 "border":
 {
-	"frame": {"x":2,"y":2,"w":30,"h":30},
+	"frame": {"x":98,"y":64,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
 	"sourceSize": {"w":30,"h":30}
 },
+"button_off":
+{
+	"frame": {"x":150,"y":64,"w":20,"h":22},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":3,"w":20,"h":22},
+	"sourceSize": {"w":30,"h":30}
+},
+"button_on":
+{
+	"frame": {"x":130,"y":94,"w":20,"h":22},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":3,"w":20,"h":22},
+	"sourceSize": {"w":30,"h":30}
+},
+"doors_taskbar":
+{
+	"frame": {"x":2,"y":2,"w":1920,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":60},
+	"sourceSize": {"w":1920,"h":60}
+},
 "player":
 {
-	"frame": {"x":34,"y":2,"w":18,"h":28},
+	"frame": {"x":130,"y":64,"w":18,"h":28},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":6,"y":0,"w":18,"h":28},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_bottom":
+{
+	"frame": {"x":66,"y":96,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_left":
+{
+	"frame": {"x":66,"y":64,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_left_right":
+{
+	"frame": {"x":34,"y":96,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_left_top_right":
+{
+	"frame": {"x":34,"y":64,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_right":
+{
+	"frame": {"x":2,"y":96,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+"preview_border_right_top_left":
+{
+	"frame": {"x":2,"y":64,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
 	"sourceSize": {"w":30,"h":30}
 }},
 "meta": {
@@ -29,8 +101,8 @@
 	"version": "1.0",
 	"image": "assets.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":128},
+	"size": {"w":2048,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c35d50727b3672c413489a11d343ae7e:238e4107176ed1278ab635eca1917317:a759b6bbc8381ac9c472b28f589ad0d6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4f2c90602ccbe49ffccf861bee21df1d:2681fe67cc3cf4503a6b8b10134603f5:a759b6bbc8381ac9c472b28f589ad0d6$"
 }
 }

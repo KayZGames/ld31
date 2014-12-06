@@ -14,3 +14,5 @@ packages/
 pubspec.lock
 .pub/
 *.kra~
+*.png~
+*.kra-autosave.kra
