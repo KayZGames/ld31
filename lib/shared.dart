@@ -19,11 +19,7 @@ class GameState {
 }
 
 class Inventory {
-  bool gun = true;
-}
-
-class Item {
-  static const gun = 1;
+  final Map<String, bool> items = {'gun': true};
 }
 
 // Dawnbringer 32 palette

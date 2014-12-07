@@ -178,10 +178,15 @@ class InventoryRenderingSystem extends VoidEntitySystem {
     var src =  sheet.sprites['inventory'].src;
     var dst =  sheet.sprites['inventory'].dst;
     ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, 400 - 150, 600 - 1.5 * tileSize, dst.width, dst.height);
-    if (inventory.gun) {
-      var src =  sheet.sprites['gun'].src;
-      var dst =  sheet.sprites['gun'].dst;
-      ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, 400 - 150 + dst.left + tileSize / 2, 600 - tileSize + dst.top, dst.width, dst.height);
+    drawItem('gun', 0);
+    drawItem('magnifier', 1);
+  }
+
+  void drawItem(String name, int position) {
+    if (inventory.items[name] == true) {
+      var src =  sheet.sprites[name].src;
+      var dst =  sheet.sprites[name].dst;
+      ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, tileSize * position + 400 - 150 + dst.left + tileSize / 2, 600 - tileSize + dst.top, dst.width, dst.height);
     }
   }
 }

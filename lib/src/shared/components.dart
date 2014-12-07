@@ -37,9 +37,9 @@ class ExpirationTimer extends Component {
 }
 
 class EquippedItem extends Component {
-  int item;
+  String name;
   num cooldown = 0;
-  EquippedItem(this.item);
+  EquippedItem(this.name);
 }
 
 class GunEffect extends Component {
@@ -52,4 +52,9 @@ class ItemMaterializer extends Component {
   String item;
   MaterializationCondition condition;
   ItemMaterializer(this.item, this.condition);
+}
+
+class Item extends Component {
+  String name;
+  Item(this.name);
 }

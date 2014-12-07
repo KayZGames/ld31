@@ -94,7 +94,7 @@ class ItemUseSystem extends EntityProcessingSystem {
     var item = im[entity];
     if (c.useItem && item.cooldown <= 0) {
       var t = tm[entity];
-      if (item.item == Item.gun) {
+      if (item.name == 'gun') {
         var xDir = 0;
         var yDir = 0;
         if ('up' == t.direction) {

@@ -4,6 +4,7 @@ part of client;
 class InputHandlingSystem extends GenericInputHandlingSystem {
   Mapper<Controller> cm;
   Mapper<Transform> tm;
+  ItemManager itemManager;
 
   InputHandlingSystem()
       : super(Aspect.getAspectForAllOf([Controller, Transform]));
@@ -26,6 +27,7 @@ class InputHandlingSystem extends GenericInputHandlingSystem {
         c.distanceX += tileSize;
         t.direction = 'right';
       }
+      itemManager.collectItem(t.x, t.y);
     }
     if (keyState[KeyCode.J] == true) {
       c.useItem = true;

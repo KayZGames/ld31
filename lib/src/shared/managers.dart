@@ -81,10 +81,34 @@ class ItemMaterializationManager extends Manager {
       var im = imm[itemMat];
       if (im.condition()) {
         var t = tm[itemMat];
-        world.createAndAddEntity([new Transform(t.x, t.y), new Renderable(im.item), new ObjectLayer()]);
+        world.createAndAddEntity([new Transform(t.x, t.y), new Renderable(im.item), new ObjectLayer(), new Item(im.item)]);
         itemMat.deleteFromWorld();
         itemMats.remove(tileIndex);
       }
+    }
+  }
+}
+
+class ItemManager extends Manager {
+  Mapper<Transform> tm;
+  Mapper<Item> im;
+  Map<int, Entity> items = new Map<int, Entity>();
+
+  @override
+  void added(Entity entity) {
+    if (im.has(entity)) {
+      var t = tm[entity];
+      items[getTileIndex(t.x, t.y)] = entity;
+    }
+  }
+
+  void collectItem(num x, num y) {
+    var tileIndex = getTileIndex(x, y);
+    var entity = items.remove(tileIndex);
+    if (null != entity) {
+      var item = im[entity];
+      inventory.items[item.name] = true;
+      entity.deleteFromWorld();
     }
   }
 }
