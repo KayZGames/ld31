@@ -3,6 +3,7 @@ part of shared;
 
 class Transform extends Component {
   num x, y;
+  String direction = '';
   Transform(this.x, this.y);
 }
 

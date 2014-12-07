@@ -3,21 +3,31 @@ part of client;
 
 class InputHandlingSystem extends GenericInputHandlingSystem {
   Mapper<Controller> cm;
+  Mapper<Transform> tm;
 
-  InputHandlingSystem() : super(Aspect.getAspectForAllOf([Controller]));
-
+  InputHandlingSystem()
+      : super(Aspect.getAspectForAllOf([Controller, Transform]));
 
   @override
   void processEntity(Entity entity) {
     var c = cm[entity];
-    if (keyState[KeyCode.W] == true && c.distanceY.abs() <= 1) {
-      c.distanceY += -tileSize;
-    } else if (keyState[KeyCode.S] == true && c.distanceY.abs() <= 1) {
-      c.distanceY += tileSize;
-    } else if (keyState[KeyCode.A] == true && c.distanceX.abs() <= 1) {
-      c.distanceX += -tileSize;
-    } else if (keyState[KeyCode.D] == true && c.distanceX.abs() <= 1) {
-      c.distanceX += tileSize;
+    if (isStanding(c)) {
+      var t = tm[entity];
+      if (keyState[KeyCode.W] == true) {
+        c.distanceY += -tileSize;
+        t.direction = 'up';
+      } else if (keyState[KeyCode.S] == true) {
+        c.distanceY += tileSize;
+        t.direction = 'down';
+      } else if (keyState[KeyCode.A] == true) {
+        c.distanceX += -tileSize;
+        t.direction = 'left';
+      } else if (keyState[KeyCode.D] == true) {
+        c.distanceX += tileSize;
+        t.direction = 'right';
+      }
     }
   }
+
+  bool isStanding(Controller c) => c.distanceX == 0 && c.distanceY == 0;
 }
