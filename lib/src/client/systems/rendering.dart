@@ -185,3 +185,38 @@ class InventoryRenderingSystem extends VoidEntitySystem {
     }
   }
 }
+
+class GunEffectRenderingSystem extends EntityProcessingSystem {
+  Mapper<Transform> tm;
+  Mapper<ExpirationTimer> etm;
+  Mapper<GunEffect> gem;
+
+  CanvasRenderingContext2D ctx;
+
+  GunEffectRenderingSystem(this.ctx) : super(Aspect.getAspectForAllOf([Transform, GunEffect, ExpirationTimer]));
+
+
+  @override
+  void processEntity(Entity entity) {
+    var t = tm[entity];
+    var et = etm[entity];
+    var ge = gem[entity];
+
+    var startX = t.x + ge.x * tileSize/2 + tileSize/2;
+    var startY = t.y + ge.y * tileSize/2 + tileSize/2;
+    var startAngle = ge.x.abs() * (PI/2 - ge.x * PI/2) + ge.y.abs() * (PI - ge.y * PI/2) - PI/4;
+    var endAngle = startAngle + 2 * PI/4;
+
+    ctx..save()
+       ..fillStyle = Colors.GOLDEN_FIZZ
+       ..globalAlpha = et.amount / et.maxAmount
+       ..beginPath()
+       ..moveTo(startX, startY)
+       ..lineTo(startX + tileSize * 8 * cos(startAngle), startY + tileSize * 8 * sin(startAngle))
+       ..arc(startX, startY, tileSize * 8, startAngle, endAngle)
+       ..lineTo(startX, startY)
+       ..fill()
+       ..closePath()
+       ..restore();
+  }
+}

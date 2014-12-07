@@ -3,8 +3,8 @@ part of shared;
 
 class Transform extends Component {
   num x, y;
-  String direction = '';
-  Transform(this.x, this.y);
+  String direction;
+  Transform(this.x, this.y, {this.direction: ''});
 }
 
 class Renderable extends Component {
@@ -14,6 +14,7 @@ class Renderable extends Component {
 
 class Controller extends Component {
   num distanceX = 0, distanceY = 0;
+  bool useItem = false;
 }
 
 typedef void ButtonAction(Entity entity);
@@ -28,4 +29,20 @@ class ScreenBackground extends Component {}
 class Cooldown extends Component {
   num amount;
   Cooldown(this.amount);
+}
+
+class ExpirationTimer extends Component {
+  num maxAmount, amount;
+  ExpirationTimer(this.maxAmount, this.amount);
+}
+
+class EquippedItem extends Component {
+  int item;
+  num cooldown = 0;
+  EquippedItem(this.item);
+}
+
+class GunEffect extends Component {
+  int x, y;
+  GunEffect(this.x, this.y);
 }

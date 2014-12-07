@@ -27,6 +27,11 @@ class InputHandlingSystem extends GenericInputHandlingSystem {
         t.direction = 'right';
       }
     }
+    if (keyState[KeyCode.J] == true) {
+      c.useItem = true;
+    } else {
+      c.useItem = false;
+    }
   }
 
   bool isStanding(Controller c) => c.distanceX == 0 && c.distanceY == 0;

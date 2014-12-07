@@ -28,7 +28,7 @@ class Game extends GameBase {
   }
 
   void createEntities() {
-    addEntity([new Transform(1920, 1080), new Renderable('player'), new Controller(), new ObjectLayer()]);
+    addEntity([new Transform(1920, 1080), new Renderable('player'), new Controller(), new ObjectLayer(), new EquippedItem(Item.gun)]);
     addEntity([new Transform(1920 - tileSize, 1080), new Renderable('button_off'), new Button(toggleScreen)]);
     addEntity([new Transform(1920/2 - tileSize/2, 1080 - 2 * tileSize + tileSize/2), new Renderable('doors_taskbar'), new ScreenBackground()]);
     addEntity([new Transform(tileSize, 1080 - tileSize), new Renderable('doorsbutton'), new ScreenBackground(), new Button(toogleDoorsMenu)]);
@@ -59,6 +59,7 @@ class Game extends GameBase {
             new ControllerMovementSystem(),
             new ButtonInteractionSystem(),
             new CooldownSystem(),
+            new ItemUseSystem(),
 
             new CanvasCleaningSystem(canvas),
             new ScreenBorderRenderingSystem(screenCtx, spriteSheet),
@@ -68,8 +69,11 @@ class Game extends GameBase {
             new DoorsMenuRenderingSystem(screenCtx, spriteSheet),
             new ButtonLayerRenderingSystem(screenCtx, spriteSheet),
             new ObjectLayerRenderingSystem(screenCtx, spriteSheet),
+            new GunEffectRenderingSystem(screenCtx),
             new ScreenToCanvasRenderingSystem(screen, ctx),
             new InventoryRenderingSystem(ctx, spriteSheet),
+
+            new ExpirationSystem(),
 
             new FpsRenderingSystem(ctx),
             new AnalyticsSystem(AnalyticsSystem.GITHUB, 'ld31')

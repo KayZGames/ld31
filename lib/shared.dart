@@ -22,6 +22,10 @@ class Inventory {
   bool gun = true;
 }
 
+class Item {
+  static const gun = 1;
+}
+
 // Dawnbringer 32 palette
 class Colors {
   static const BLACK = "#000000";
