@@ -14,8 +14,8 @@ class ButtonManager extends Manager {
   }
 
   int getTileIndex(num x, num y) {
-    var tileX = x ~/ tileSize;
-    var tileY = y ~/ tileSize;
-    return tileX * tileY + tileX;
+    var tileX = 1 + x ~/ tileSize;
+    var tileY = 1 + y ~/ tileSize;
+    return tileY * (1920 ~/ tileSize + 2) + tileX;
   }
 }

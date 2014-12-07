@@ -14,6 +14,7 @@ GameState state = new GameState();
 
 class GameState {
   bool screenOn = false;
+  bool doorsMenuOpened = false;
 }
 
 // Dawnbringer 32 palette

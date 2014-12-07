@@ -28,9 +28,10 @@ class Game extends GameBase {
   }
 
   void createEntities() {
-    addEntity([new Transform(0, 0), new Renderable('player'), new Controller(), new ObjectLayer()]);
+    addEntity([new Transform(1920, 1080), new Renderable('player'), new Controller(), new ObjectLayer()]);
     addEntity([new Transform(1920 - tileSize, 1080), new Renderable('button_off'), new Button(toggleScreen)]);
-    addEntity([new Transform(0, 1080 - 2 * tileSize), new Renderable('doors_taskbar'), new ScreenBackground()]);
+    addEntity([new Transform(1920/2 - tileSize/2, 1080 - 2 * tileSize + tileSize/2), new Renderable('doors_taskbar'), new ScreenBackground()]);
+    addEntity([new Transform(tileSize, 1080 - tileSize), new Renderable('doorsbutton'), new ScreenBackground(), new Button(toogleDoorsMenu)]);
   }
 
   void toggleScreen(Entity entity) {
@@ -41,6 +42,12 @@ class Game extends GameBase {
     } else {
       r.name = 'button_off';
       state.screenOn = false;
+    }
+  }
+
+  void toogleDoorsMenu(Entity entity) {
+    if (state.screenOn) {
+      state.doorsMenuOpened = !state.doorsMenuOpened;
     }
   }
 
@@ -58,6 +65,7 @@ class Game extends GameBase {
             new SwitchedOffScreenRenderingSystem(screenCtx, spriteSheet),
             new ScreenBackgroundLayerRenderingSystem(screenCtx, spriteSheet),
             new PreviewContainerRenderingSystem(screenCtx, spriteSheet),
+            new DoorsMenuRenderingSystem(screenCtx, spriteSheet),
             new ButtonLayerRenderingSystem(screenCtx, spriteSheet),
             new ObjectLayerRenderingSystem(screenCtx, spriteSheet),
             new ScreenToCanvasRenderingSystem(screen, ctx),

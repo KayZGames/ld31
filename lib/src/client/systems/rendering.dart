@@ -18,7 +18,7 @@ class RenderingSystem extends EntityProcessingSystem {
     var src = sheet.sprites[r.name].src;
     var dst = sheet.sprites[r.name].dst;
 
-    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, t.x, t.y, dst.width, dst.height);
+    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, t.x + tileSize/2 + dst.left, t.y + tileSize/2 + dst.top, dst.width, dst.height);
   }
 }
 
@@ -26,7 +26,7 @@ class ObjectLayerRenderingSystem extends RenderingSystem {
   ObjectLayerRenderingSystem(CanvasRenderingContext2D ctx, SpriteSheet sheet) : super(ctx, sheet, Aspect.getAspectForAllOf([ObjectLayer]));
 }
 class ButtonLayerRenderingSystem extends RenderingSystem {
-  ButtonLayerRenderingSystem(CanvasRenderingContext2D ctx, SpriteSheet sheet) : super(ctx, sheet, Aspect.getAspectForAllOf([Button]));
+  ButtonLayerRenderingSystem(CanvasRenderingContext2D ctx, SpriteSheet sheet) : super(ctx, sheet, Aspect.getAspectForAllOf([Button]).exclude([ScreenBackground]));
 }
 class ScreenBackgroundLayerRenderingSystem extends RenderingSystem {
   ScreenBackgroundLayerRenderingSystem(CanvasRenderingContext2D ctx, SpriteSheet sheet) : super(ctx, sheet, Aspect.getAspectForAllOf([ScreenBackground]));
@@ -147,4 +147,21 @@ class PreviewContainerRenderingSystem extends VoidEntitySystem {
 
   @override
   bool checkProcessing() => state.screenOn;
+}
+
+class DoorsMenuRenderingSystem extends VoidEntitySystem {
+  CanvasRenderingContext2D ctx;
+  SpriteSheet sheet;
+
+  DoorsMenuRenderingSystem(this.ctx, this.sheet);
+
+  @override
+  void processSystem() {
+    var src = sheet.sprites['doors_menu'].src;
+    var dst = sheet.sprites['doors_menu'].dst;
+    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, tileSize, 1080 - 2 * tileSize - dst.height, dst.width, dst.height);
+  }
+
+  @override
+  bool checkProcessing() => state.screenOn && state.doorsMenuOpened;
 }
