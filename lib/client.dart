@@ -57,7 +57,7 @@ class Game extends GameBase {
             new ScreenBorderRenderingSystem(screenCtx, spriteSheet),
             new SwitchedOffScreenRenderingSystem(screenCtx, spriteSheet),
             new ScreenBackgroundLayerRenderingSystem(screenCtx, spriteSheet),
-            new PreviewContainerRenderingSystem(screenCtx),
+            new PreviewContainerRenderingSystem(screenCtx, spriteSheet),
             new ButtonLayerRenderingSystem(screenCtx, spriteSheet),
             new ObjectLayerRenderingSystem(screenCtx, spriteSheet),
             new ScreenToCanvasRenderingSystem(screen, ctx),

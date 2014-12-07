@@ -114,8 +114,9 @@ class SwitchedOffScreenRenderingSystem extends VoidEntitySystem {
 class PreviewContainerRenderingSystem extends VoidEntitySystem {
   CanvasRenderingContext2D ctx;
   CanvasElement buffer;
+  SpriteSheet sheet;
 
-  PreviewContainerRenderingSystem(this.ctx);
+  PreviewContainerRenderingSystem(this.ctx, this.sheet);
 
   @override
   void initialize() {
@@ -140,6 +141,8 @@ class PreviewContainerRenderingSystem extends VoidEntitySystem {
   @override
   void processSystem() {
     ctx.drawImage(buffer, 0, 0);
+    var src = sheet.sprites['screen_0'].src;
+    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, tileSize, 2 * tileSize, 1920 - 2 * tileSize, 1080 - 7 * tileSize);
   }
 
   @override
