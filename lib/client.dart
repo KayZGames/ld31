@@ -32,6 +32,7 @@ class Game extends GameBase {
     addEntity([new Transform(1920 - tileSize, 1080), new Renderable('button_off'), new Button(toggleScreen)]);
     addEntity([new Transform(1920/2 - tileSize/2, 1080 - 2 * tileSize + tileSize/2), new Renderable('doors_taskbar'), new ScreenBackground()]);
     addEntity([new Transform(tileSize, 1080 - tileSize), new Renderable('doorsbutton'), new ScreenBackground(), new Button(toogleDoorsMenu)]);
+    addEntity([new Transform(tileSize, 1080 - 6 * tileSize), new ItemMaterializer('magnifier', () => state.doorsMenuOpened && state.screenOn)]);
   }
 
   void toggleScreen(Entity entity) {
@@ -82,5 +83,6 @@ class Game extends GameBase {
 
   onInit() {
     world.addManager(new ButtonManager());
+    world.addManager(new ItemMaterializationManager());
   }
 }

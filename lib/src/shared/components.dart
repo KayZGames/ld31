@@ -46,3 +46,10 @@ class GunEffect extends Component {
   int x, y;
   GunEffect(this.x, this.y);
 }
+
+typedef bool MaterializationCondition();
+class ItemMaterializer extends Component {
+  String item;
+  MaterializationCondition condition;
+  ItemMaterializer(this.item, this.condition);
+}

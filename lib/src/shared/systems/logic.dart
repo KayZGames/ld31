@@ -53,7 +53,7 @@ class ButtonInteractionSystem extends EntityProcessingSystem {
   void processEntity(Entity entity) {
     var t = tm[entity];
 
-    var tileIndex = buttonManager.getTileIndex(t.x, t.y);
+    var tileIndex = getTileIndex(t.x, t.y);
     var button = buttonManager.buttons[tileIndex];
     if (button != null) {
       bm[button].action(button);
@@ -84,6 +84,7 @@ class ItemUseSystem extends EntityProcessingSystem {
   Mapper<Controller> cm;
   Mapper<Transform> tm;
   Mapper<EquippedItem> im;
+  ItemMaterializationManager itemMatManager;
 
   ItemUseSystem() : super(Aspect.getAspectForAllOf([Controller, Transform, EquippedItem]));
 
@@ -94,19 +95,19 @@ class ItemUseSystem extends EntityProcessingSystem {
     if (c.useItem && item.cooldown <= 0) {
       var t = tm[entity];
       if (item.item == Item.gun) {
-        // TODO materialize stuff
-        var x = 0;
-        var y = 0;
+        var xDir = 0;
+        var yDir = 0;
         if ('up' == t.direction) {
-          y = -1;
+          yDir = -1;
         } else if ('down' == t.direction) {
-          y = 1;
+          yDir = 1;
         } else if ('left' == t.direction) {
-          x = -1;
+          xDir = -1;
         } else if ('right' == t.direction) {
-          x = 1;
+          xDir = 1;
         }
-        world.createAndAddEntity([new Transform(t.x, t.y), new GunEffect(x, y), new ExpirationTimer(200, 200)]);
+        world.createAndAddEntity([new Transform(t.x, t.y), new GunEffect(xDir, yDir), new ExpirationTimer(200, 200)]);
+        itemMatManager.materialize(t.x, t.y, xDir, yDir);
       }
       item.cooldown = 1000;
     } else {
