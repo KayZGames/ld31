@@ -56,6 +56,22 @@
 	"spriteSourceSize": {"x":28,"y":10,"w":34,"h":48},
 	"sourceSize": {"w":90,"h":90}
 },
+"gun":
+{
+	"frame": {"x":2002,"y":34,"w":24,"h":18},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":5,"w":24,"h":18},
+	"sourceSize": {"w":30,"h":30}
+},
+"inventory":
+{
+	"frame": {"x":2,"y":936,"w":300,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":300,"h":30},
+	"sourceSize": {"w":300,"h":30}
+},
 "player":
 {
 	"frame": {"x":1960,"y":34,"w":18,"h":28},
@@ -79,6 +95,6 @@
 	"format": "RGBA8888",
 	"size": {"w":2048,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:234fc55d41fde94bf44d75fa55e49ddf:f3747d793f43706ba8f29f54fcaee0e5:a759b6bbc8381ac9c472b28f589ad0d6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:167aed3a63e7932ee136bee3dc0af98d:1fd121f0781b9801fa2132f5fcbf38ad:a759b6bbc8381ac9c472b28f589ad0d6$"
 }
 }

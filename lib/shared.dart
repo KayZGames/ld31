@@ -11,10 +11,15 @@ part 'src/shared/systems/logic.dart';
 const int tileSize = 30;
 
 GameState state = new GameState();
+Inventory inventory = new Inventory();
 
 class GameState {
   bool screenOn = false;
   bool doorsMenuOpened = false;
+}
+
+class Inventory {
+  bool gun = true;
 }
 
 // Dawnbringer 32 palette

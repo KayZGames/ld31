@@ -69,6 +69,7 @@ class Game extends GameBase {
             new ButtonLayerRenderingSystem(screenCtx, spriteSheet),
             new ObjectLayerRenderingSystem(screenCtx, spriteSheet),
             new ScreenToCanvasRenderingSystem(screen, ctx),
+            new InventoryRenderingSystem(ctx, spriteSheet),
 
             new FpsRenderingSystem(ctx),
             new AnalyticsSystem(AnalyticsSystem.GITHUB, 'ld31')

@@ -47,7 +47,7 @@ class ScreenToCanvasRenderingSystem extends EntityProcessingSystem {
   void processEntity(Entity entity) {
     var t = tm[entity];
 
-    ctx.drawImageScaledFromSource(screen, -400 + t.x, -300 + t.y, 800, 600, -1.5 * tileSize, -1.5 * tileSize, 800, 600);
+    ctx.drawImageScaledFromSource(screen, -400 + t.x + 1.5 * tileSize, -300 + t.y + 1.5 * tileSize, 800, 600, 0, 0, 800, 600);
   }
 }
 
@@ -164,4 +164,23 @@ class DoorsMenuRenderingSystem extends VoidEntitySystem {
 
   @override
   bool checkProcessing() => state.screenOn && state.doorsMenuOpened;
+}
+
+class InventoryRenderingSystem extends VoidEntitySystem {
+  CanvasRenderingContext2D ctx;
+  SpriteSheet sheet;
+
+  InventoryRenderingSystem(this.ctx, this.sheet);
+
+  @override
+  void processSystem() {
+    var src =  sheet.sprites['inventory'].src;
+    var dst =  sheet.sprites['inventory'].dst;
+    ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, 400 - 150, 600 - 1.5 * tileSize, dst.width, dst.height);
+    if (inventory.gun) {
+      var src =  sheet.sprites['gun'].src;
+      var dst =  sheet.sprites['gun'].dst;
+      ctx.drawImageScaledFromSource(sheet.image, src.left, src.top, src.width, src.height, 400 - 150 + dst.left + tileSize / 2, 600 - tileSize + dst.top, dst.width, dst.height);
+    }
+  }
 }
