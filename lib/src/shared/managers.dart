@@ -84,6 +84,8 @@ class ItemMaterializationManager extends Manager {
         world.createAndAddEntity([new Transform(t.x, t.y), new Renderable(im.item), new ObjectLayer(), new Item(im.item)]);
         itemMat.deleteFromWorld();
         itemMats.remove(tileIndex);
+
+        world.createAndAddEntity([new Sound('materialization')]);
       }
     }
   }
@@ -109,6 +111,8 @@ class ItemManager extends Manager {
       var item = im[entity];
       inventory.items[item.name] = true;
       entity.deleteFromWorld();
+
+      world.createAndAddEntity([new Sound('pickup')]);
     }
   }
 }

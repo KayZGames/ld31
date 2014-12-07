@@ -74,6 +74,8 @@ class Game extends GameBase {
             new ScreenToCanvasRenderingSystem(screen, ctx),
             new InventoryRenderingSystem(ctx, spriteSheet),
 
+            new SoundSystem(helper.audioHelper),
+
             new ExpirationSystem(),
 
             new FpsRenderingSystem(ctx),
@@ -85,5 +87,7 @@ class Game extends GameBase {
     world.addManager(new ButtonManager());
     world.addManager(new ItemMaterializationManager());
     world.addManager(new ItemManager());
+
+    return helper.audioHelper.loadAudioClips(['gun', 'materialization', 'pickup']);
   }
 }

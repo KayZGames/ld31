@@ -108,6 +108,8 @@ class ItemUseSystem extends EntityProcessingSystem {
         }
         world.createAndAddEntity([new Transform(t.x, t.y), new GunEffect(xDir, yDir), new ExpirationTimer(200, 200)]);
         itemMatManager.materialize(t.x, t.y, xDir, yDir);
+
+        world.createAndAddEntity([new Sound('gun')]);
       }
       item.cooldown = 1000;
     } else {
